@@ -23,16 +23,30 @@ class DinosaursController < ApplicationController
     end
   end
 
+  def edit
+    show
+  end
+
+# -------------------------------------
+
   def update
-    @dinosaur = Dinosaur.update #FIXME
+    show
+      if @dinosaur.update_attributes(dinosaur_params)
+        redirect_to @dinosaur
+      else
+        render 'edit'
+      end
   end
 
   def destroy
-    @dinosaur = Dinosaur.delete #FIXME
+    show
+    @dinosaur.destroy
+    redirect_to dinosaurs_path
   end
 
-# private
+private
   def dinosaur_params
     params.require(:dinosaur).permit(:name, :age, :image_url)
   end
+
 end
