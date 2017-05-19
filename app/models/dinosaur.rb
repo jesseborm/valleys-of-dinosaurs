@@ -8,4 +8,5 @@ class Dinosaur < ApplicationRecord
     age < 3
   end
 
+
 end
